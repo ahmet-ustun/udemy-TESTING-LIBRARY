@@ -6,27 +6,27 @@ import { kebabCaseToTitleCase } from "./helpers.js";
 test("button starts with correct label and color", () => {
   render(<App />);
   
-  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const buttonElement = screen.getByRole("button", { name: /midnight blue/i });
   
-  expect(buttonElement).toHaveTextContent(/blue/i);
-  expect(buttonElement).toHaveClass("red");
+  expect(buttonElement).toHaveTextContent(/midnight blue/i);
+  expect(buttonElement).toHaveClass("medium-violet-red");
 });
 
 test("button has correct label and color after click", () => {
   render(<App />);
   
-  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const buttonElement = screen.getByRole("button", { name: /midnight blue/i });
   
   fireEvent.click(buttonElement);
   
-  expect(buttonElement).toHaveTextContent(/red/i);
-  expect(buttonElement).toHaveClass("blue");
+  expect(buttonElement).toHaveTextContent(/medium violet red/i);
+  expect(buttonElement).toHaveClass("midnight-blue");
 });
 
 test("checkbox flow 1", () => {
   render(<App />);
   
-  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const buttonElement = screen.getByRole("button", { name: /midnight blue/i });
   const checkboxElement = screen.getByRole("checkbox", { name: /disable button/i });
   
   expect(checkboxElement).not.toBeChecked();
@@ -42,7 +42,7 @@ test("checkbox flow 1", () => {
 test("checkbox flow 2", () => {
   render(<App />);
   
-  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const buttonElement = screen.getByRole("button", { name: /midnight blue/i });
   const checkboxElement = screen.getByRole("checkbox", { name: /disable button/i });
   
   expect(checkboxElement).not.toBeChecked();
