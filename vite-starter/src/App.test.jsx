@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 import { expect } from "vitest";
+import { kebabCaseToTitleCase } from "./helpers.js";
 
 test("button starts with correct label and color", () => {
   render(<App />);
@@ -58,4 +59,16 @@ test("checkbox flow 2", () => {
   expect(checkboxElement).not.toBeChecked();
   expect(buttonElement).toBeEnabled();
   expect(buttonElement).not.toHaveClass("disabled");
+});
+
+describe("kebabCaseToTitleCase", () => {
+  test("works for no hypens", () => {
+    expect(kebabCaseToTitleCase("red")).toBe("Red");
+  });
+  test("works for one hypen", () => {
+    expect(kebabCaseToTitleCase("light-blue")).toBe("Light Blue");
+  });
+  test("works for multiple hypens", () => {
+    expect(kebabCaseToTitleCase("very-dark-gray")).toBe("Very Dark Gray");
+  });
 });
