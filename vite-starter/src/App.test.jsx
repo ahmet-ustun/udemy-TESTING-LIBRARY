@@ -4,6 +4,7 @@ import App from "./App";
 test("button starts with correct label and color", () => {
   render(<App />);
   const buttonElement = screen.getByRole("button", { name: /blue/i });
+  expect(buttonElement).toHaveTextContent(/blue/i);
   expect(buttonElement).toHaveClass("red");
 });
 
