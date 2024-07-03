@@ -5,3 +5,7 @@
 .blue {
   background-color: blue;
 }
+
+.disabled {
+  background-color: gray;
+}

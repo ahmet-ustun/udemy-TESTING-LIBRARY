@@ -35,6 +35,7 @@ test("checkbox flow 1", () => {
   
   expect(checkboxElement).toBeChecked();
   expect(buttonElement).toBeDisabled();
+  expect(buttonElement).toHaveClass("disabled");
 });
 
 test("checkbox flow 2", () => {
@@ -50,9 +51,11 @@ test("checkbox flow 2", () => {
   
   expect(checkboxElement).toBeChecked();
   expect(buttonElement).toBeDisabled();
+  expect(buttonElement).toHaveClass("disabled");
 
   fireEvent.click(checkboxElement);
 
   expect(checkboxElement).not.toBeChecked();
   expect(buttonElement).toBeEnabled();
+  expect(buttonElement).not.toHaveClass("disabled");
 });
