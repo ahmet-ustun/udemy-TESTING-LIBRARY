@@ -1,5 +1,6 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import SummaryForm from "../summary/SummaryForm";
+import userEvent from "@testing-library/user-event";
 
 test("Checkbox is unchecked, button is disabled", () => {
   render(<SummaryForm />);
@@ -13,7 +14,8 @@ test("Checkbox is unchecked, button is disabled", () => {
   expect(confirmButton).toBeDisabled();
 });
 
-test("Checkbox is checked, button is enabled", () => {
+test("Checkbox is checked, button is enabled", async () => {
+  const user = userEvent.setup();
   render(<SummaryForm />);
 
   const checkbox = screen.getByRole("checkbox", {
@@ -21,12 +23,13 @@ test("Checkbox is checked, button is enabled", () => {
   });
   const confirmButton = screen.getByRole("button", { name: /confirm order/i });
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(checkbox).toBeChecked();
   expect(confirmButton).toBeEnabled();
 });
 
-test("Checkbox is checked and unchecked, button is disabled", () => {
+test("Checkbox is checked and unchecked, button is disabled", async () => {
+  const user = userEvent.setup();
   render(<SummaryForm />);
 
   const checkbox = screen.getByRole("checkbox", {
@@ -34,11 +37,11 @@ test("Checkbox is checked and unchecked, button is disabled", () => {
   });
   const confirmButton = screen.getByRole("button", { name: /confirm order/i });
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(checkbox).toBeChecked();
   expect(confirmButton).toBeEnabled();
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(checkbox).not.toBeChecked();
   expect(confirmButton).toBeDisabled();
 });
