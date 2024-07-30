@@ -13,12 +13,14 @@ export default function OrderSummary({ setOrderPhase }) {
   const toppingsArray = Object.keys(optionCounts.toppings);
   const toppingsList = toppingsArray.map((key) => <li key={key}>{key}</li>);
 
+  const hasToppings = totals.toppings > 0;
+
   return (
     <div>
       <h1>Order Summary</h1>
       <h2>Scoops: {formatCurrency(totals.scoops)}</h2>
       <ul>{scoopsList}</ul>
-      {totals.toppings > 0 && (
+      {hasToppings && (
         <>
           <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
           <ul>{toppingsList}</ul>
