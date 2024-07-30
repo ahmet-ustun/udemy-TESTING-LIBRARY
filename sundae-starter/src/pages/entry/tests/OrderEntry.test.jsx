@@ -3,7 +3,7 @@ import OrderEntry from "../OrderEntry";
 import { server } from "../../../mocks/server";
 import { http, HttpResponse } from "msw";
 
-test.only("Handles error for scoops and toppings routes", async () => {
+test("Handles error for scoops and toppings routes", async () => {
   server.resetHandlers(
     http.get(
       "http://localhost:3030/scoops",
@@ -26,3 +26,11 @@ test.only("Handles error for scoops and toppings routes", async () => {
 
 test("my test 2", () => {});
 test("my test 3", () => {});
+
+test("Order button is disabled if there are no scoops ordered", async () => {
+  render(<OrderEntry />);
+
+  const orderButton = screen.getByRole("button", { name: /order sundae/i });
+
+  expect(orderButton).toBeDisabled();
+})
