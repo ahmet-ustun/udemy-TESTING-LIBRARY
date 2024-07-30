@@ -12,12 +12,14 @@ export default function OrderEntry({ setOrderPhase }) {
     setOrderPhase("review");
   };
 
+  const hasScoops = totals.scoops > 0;
+
   return (
     <div>
       <Options optionType="scoops" />
       <Options optionType="toppings" />
       <h2>Grand total: {formatCurrency(grandTotal)}</h2>
-      <Button onClick={handleClick}>Order sundae</Button>
+      <Button disabled={!hasScoops} onClick={handleClick}>Order sundae</Button>
     </div>
   );
 }
