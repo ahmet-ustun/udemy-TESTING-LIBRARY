@@ -16,7 +16,8 @@ export default function ScoopOption({ name, imagePath }) {
       currentValue.match(/^0$|^[1-9]\d*$/) && currentValue <= 10;
 
     setIsValid(isValueValid);
-    updateItemCount(name, parseInt(currentValue), "scoops");
+
+    if (isValueValid) updateItemCount(name, parseInt(currentValue), "scoops");
   };
 
   return (
